@@ -16,6 +16,8 @@ public class CharacterMove : MonoBehaviour
     float dashTime = 0.3f;
     float dashCooldownTimer = 1f;
 
+    public bool isCanMove = true;
+
     void Start()
     {
         Instance = this;
@@ -23,6 +25,9 @@ public class CharacterMove : MonoBehaviour
 
     void Update()
     {
+
+        if (!isCanMove)
+            return;
         // Ambil input player
         movement.x = Input.GetAxisRaw("Horizontal");
         // movement.y = Input.GetAxisRaw("Vertical");
