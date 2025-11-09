@@ -4,9 +4,17 @@
 TagManager:
   serializedVersion: 3
   tags:
+<<<<<<< HEAD
   - Ball
   - Wall
   - Enemy
+=======
+  - ball
+  - brick
+  - wall
+  - ship
+  - shield
+>>>>>>> upstream/main
   layers:
   - Default
   - TransparentFX

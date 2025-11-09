@@ -6,7 +6,7 @@ public class NoteBalok : MonoBehaviour
 
     public int Life
     {
-        get => life; 
+        get => life;
         set
         {
             life = value;
@@ -17,6 +17,11 @@ public class NoteBalok : MonoBehaviour
     public void UpdateBlock()
     {
         Debug.Log("Hitt balock note");
-        if (Life <= 0) Destroy(gameObject);
+        if (Life <= 0)
+        {
+            GameManager.Instance.totalBlock--;
+            Destroy(gameObject);
+        }
+
     }
 }
