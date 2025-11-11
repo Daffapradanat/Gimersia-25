@@ -61,6 +61,7 @@ public class TextHoverCombinedEffect : MonoBehaviour, IPointerEnterHandler, IPoi
     // Fungsi ini dipanggil saat mouse MASUK area teks
     public void OnPointerEnter(PointerEventData eventData)
     {
+        HomeSceneSc.Instance.PlayAudio();
         // Set nilai TARGET ke nilai hover
         targetScale = originalScale * hoverScaleFactor;
         targetColor = hoverColor;
