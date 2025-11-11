@@ -61,11 +61,7 @@ MonoBehaviour:
       - rid: 5143668407577346049
       - rid: 5143668407577346050
       - rid: 5143668407577346051
-<<<<<<< HEAD
-      - rid: 7034424897404665856
-=======
       - rid: 3868945239260004352
->>>>>>> 11b0420dfdcb7cbf93c17aef5ae67026b6bf957c
     m_RuntimeSettings:
       m_List: []
   m_AssetVersion: 8
