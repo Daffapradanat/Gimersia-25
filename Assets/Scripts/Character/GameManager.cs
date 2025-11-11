@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
 
     // variabel
     public int health = 5, score, combo, level, totalBlock, totalHealthBoss;
-    public bool isCombo = false, isPlay = false, isHaveBoss = false, isFirstPlay = true, isLoose = false, isCanPlay = false;
+    public bool isCombo = false, isPlay = false, isHaveBoss = false, isFirstPlay = true, isLoose = false, isCanPlay = false, isWinning = false;
 
     public int bintangSatu_Menit, bintangDua_Menit, bintangTiga_Menit;
 
@@ -149,6 +149,15 @@ public class GameManager : MonoBehaviour
             KeyAnyForStart();
         }
 
+        if (IsLevelCompleted() && !isWinning)
+        {
+            isWinning = true;
+            characterMoveSc.isCanMove = false;
+            ballSc.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+            isPlay = false;
+            StageWasClear();
+        }
+
 
         if (isPlay && Input.GetKeyDown(KeyCode.Escape))
         {
@@ -165,10 +174,7 @@ public class GameManager : MonoBehaviour
         totalPlaySeconds += Time.unscaledDeltaTime;
         UpdateUITimer();
 
-        if (IsLevelCompleted())
-        {
-            StageWasClear();
-        }
+
 
         if (health <= 0 && !isLoose)
         {
@@ -201,14 +207,25 @@ public class GameManager : MonoBehaviour
     {
         if (isHaveBoss)
         {
+
             // berdasarkan boss
             if (totalHealthBoss <= 0)
+            {
+                Debug.Log("masuk boss");
                 return true;
+            }
+
         }
         else
         {
             // berdasarkan balok
-            if (totalBlock <= 0) return true;
+            if (totalBlock <= 0)
+            {
+
+                Debug.Log("masuk balok");
+                return true;
+            }
+
         }
 
         return false;
@@ -216,12 +233,13 @@ public class GameManager : MonoBehaviour
 
     void StageWasClear()
     {
-        hUDManager.ShowCompletedStage(GetTextGrading(totalPlaySeconds), 4f, () =>
+        Debug.Log("STAGE WAS CLEAR RUNN");
+        StartCoroutine(hUDManager.ShowCompletedStage(GetTextGrading(totalPlaySeconds), 4f, () =>
         {
             // Show UI Scoring
             SceneManager.LoadSceneAsync("Scoring", LoadSceneMode.Additive);
-            Debug.Log("Load scene scoring");
-        });
+            Debug.LogWarning("Load scene scoring");
+        }));
     }
 
     public int GetCountStar(float second)

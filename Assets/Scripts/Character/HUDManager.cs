@@ -54,6 +54,7 @@ public class HUDManager : MonoBehaviour
 
     public IEnumerator ShowCompletedStage(string text, float delay, Action OnSuccess)
     {
+        Debug.LogWarning("AKU UDAH KELUAR COMPLETE STAGE");
         textTypingCompleted.text = "";
         completedUI.DOFade(1, 1f);
 
