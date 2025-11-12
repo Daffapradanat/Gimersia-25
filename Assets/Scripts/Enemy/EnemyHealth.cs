@@ -10,6 +10,10 @@ public class EnemyHealth : MonoBehaviour
     [Header("Health")]
     [SerializeField] float maxHealth = 100f;
     
+    [Header("Enemy Type")]
+    [SerializeField] bool isBoss = false;
+    [SerializeField] int scoreReward = 10;
+    
     [Header("Visual Feedback")]
     [SerializeField] bool flashOnHit = true;
     [SerializeField] Color hitColor = Color.red;
@@ -18,9 +22,6 @@ public class EnemyHealth : MonoBehaviour
     [Header("Death Behavior")]
     [SerializeField] bool autoDestroy = true;
     [SerializeField] float destroyDelay = 0f;
-    
-    [Header("Debug")]
-    [SerializeField] bool showDamageLog = false;
     
     float currentHealth;
     bool isDead;
@@ -43,6 +44,12 @@ public class EnemyHealth : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
+        
+        if (isBoss && GameManager.Instance != null)
+        {
+            GameManager.Instance.totalHealthBoss += (int)maxHealth;
+            GameManager.Instance.isHaveBoss = true;
+        }
     }
 
     public void TakeDamage(float amount)
@@ -55,10 +62,13 @@ public class EnemyHealth : MonoBehaviour
         
         float actualDamage = previousHealth - currentHealth;
         
-        if (showDamageLog)
-            Debug.Log($"[{gameObject.name}] Took {actualDamage} damage. Health: {currentHealth}/{maxHealth}");
-        
         OnDamageTaken?.Invoke(actualDamage);
+        
+        if (isBoss && GameManager.Instance != null)
+        {
+            GameManager.Instance.totalHealthBoss -= (int)actualDamage;
+            GameManager.Instance.totalHealthBoss = Mathf.Max(0, GameManager.Instance.totalHealthBoss);
+        }
         
         if (flashOnHit && spriteRenderer != null)
         {
@@ -78,19 +88,19 @@ public class EnemyHealth : MonoBehaviour
     {
         if (isDead || amount <= 0) return;
         
+        float previousHealth = currentHealth;
         currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
+        float actualHeal = currentHealth - previousHealth;
         
-        if (showDamageLog)
-            Debug.Log($"[{gameObject.name}] Healed {amount}. Health: {currentHealth}/{maxHealth}");
+        if (isBoss && GameManager.Instance != null)
+        {
+            GameManager.Instance.totalHealthBoss += (int)actualHeal;
+        }
     }
 
     public void SetMaxHealth(float value)
     {
-        if (value <= 0)
-        {
-            Debug.LogWarning($"[EnemyHealth] Attempted to set invalid max health: {value}");
-            return;
-        }
+        if (value <= 0) return;
         
         float healthPercentage = HealthPercentage;
         maxHealth = value;
@@ -124,9 +134,6 @@ public class EnemyHealth : MonoBehaviour
         
         isDead = true;
         
-        if (showDamageLog)
-            Debug.Log($"[{gameObject.name}] Died");
-        
         if (flashCoroutine != null)
         {
             StopCoroutine(flashCoroutine);
@@ -135,6 +142,16 @@ public class EnemyHealth : MonoBehaviour
         
         if (spriteRenderer != null)
             spriteRenderer.color = originalColor;
+        
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.AddScore(scoreReward);
+            
+            if (transform.position != null)
+            {
+                GameManager.Instance.SpawnVfxExplode(transform.position);
+            }
+        }
         
         OnDeath?.Invoke();
         

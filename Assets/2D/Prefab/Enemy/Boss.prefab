@@ -225,12 +225,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   maxHealth: 100
+  isBoss: 1
+  scoreReward: 1000
   flashOnHit: 1
   hitColor: {r: 1, g: 0, b: 0, a: 1}
   flashDuration: 0.1
   autoDestroy: 1
   destroyDelay: 0
-  showDamageLog: 0
 --- !u!114 &8615895415407371855
 MonoBehaviour:
   m_ObjectHideFlags: 0

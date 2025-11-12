@@ -3,18 +3,19 @@ using UnityEngine;
 public class CharacterMove : MonoBehaviour
 {
     public static CharacterMove Instance;
-    // move
+    
     public float moveSpeed = 5f;
     public Vector2 movement;
-
     public Rigidbody2D rb;
 
-    // blink / dash
     public float dashDuration = 0.2f;
     public float dashCooldown = 1f;
+    public float dashAccelerationTime = 0.1f;
+    
     bool isDashing = false;
     float dashTime = 0.3f;
     float dashCooldownTimer = 1f;
+    float dashSpeedMultiplier = 1f;
 
     public bool isCanMove = true;
 
@@ -25,52 +26,50 @@ public class CharacterMove : MonoBehaviour
 
     void Update()
     {
-         if (!GameManager.Instance.isPlay) return;
-        if (!isCanMove)
-            return;
-        // Ambil input player
+        if (!GameManager.Instance.isPlay) return;
+        if (!isCanMove) return;
+
         movement.x = Input.GetAxisRaw("Horizontal");
-        // movement.y = Input.GetAxisRaw("Vertical");
         movement = movement.normalized;
 
-        // Dash input
         if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.L)) && !isDashing && dashCooldownTimer <= 0)
         {
             isDashing = true;
             dashTime = dashDuration;
             dashCooldownTimer = dashCooldown + dashDuration;
+            dashSpeedMultiplier = 1f;
         }
 
-        // Timer untuk dash dan cooldown
         if (dashCooldownTimer > 0)
         {
             dashCooldownTimer -= Time.deltaTime;
         }
-
     }
 
     void FixedUpdate()
     {
         if (!GameManager.Instance.isPlay) return;
-        if (isDashing) // jika isDashing true
+        
+        if (isDashing)
         {
-            rb.linearVelocity = movement * getDashSpeed(moveSpeed);
+            if (dashSpeedMultiplier < 4f)
+            {
+                dashSpeedMultiplier += (3f / dashAccelerationTime) * Time.fixedDeltaTime;
+                dashSpeedMultiplier = Mathf.Min(dashSpeedMultiplier, 4f);
+            }
 
-            dashTime -= Time.fixedDeltaTime; // kurangi durasi 
+            rb.linearVelocity = movement * moveSpeed * dashSpeedMultiplier;
+
+            dashTime -= Time.fixedDeltaTime;
             if (dashTime <= 0)
             {
-                isDashing = false; // kalo time habis maka set is dashing false
+                isDashing = false;
+                dashSpeedMultiplier = 1f;
             }
         }
         else
         {
-            // basic move
             rb.linearVelocity = movement * moveSpeed;
         }
-    }
-
-    float getDashSpeed(float movespeedBase)
-    {
-        return movespeedBase * 4;
     }
 }

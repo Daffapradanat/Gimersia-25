@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -134,12 +134,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   maxHealth: 100
+  isBoss: 1
+  scoreReward: 100
   flashOnHit: 1
   hitColor: {r: 1, g: 0, b: 0, a: 1}
   flashDuration: 0.1
   autoDestroy: 1
   destroyDelay: 0
-  showDamageLog: 0
 --- !u!114 &9029022878303979823
 MonoBehaviour:
   m_ObjectHideFlags: 0
