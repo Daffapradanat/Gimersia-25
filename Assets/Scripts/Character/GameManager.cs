@@ -11,13 +11,14 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     // Character
-    [SerializeField] GameObject Character, vfxExplode;
-    [SerializeField] List<GameObject> vfxExplodes;
+    [SerializeField] GameObject Character, vfxExplode, vfxShockw;
+    [SerializeField] List<GameObject> vfxExplodes, vfxShockwave;
 
     // Sc
     [SerializeField] CharacterMove characterMoveSc;
     [SerializeField] HUDManager hUDManager;
     [SerializeField] BallSc ballSc;
+    List<ShieldScript> shieldScripts;
 
     // light
     [SerializeField] GameObject LightUltimate, fireKiri, fireKanan;
@@ -60,17 +61,7 @@ public class GameManager : MonoBehaviour
     }
 
     // Audio
-    [SerializeField] AudioSource audioSourceBox;
-
-    public void PlaySound()
-    {
-        audioSourceBox.Stop();
-        audioSourceBox.loop = false;
-        audioSourceBox.volume = Random.Range(0.9f, 1.2f);
-        audioSourceBox.pitch = Random.Range(0.8f, 1.2f);
-        audioSourceBox.Play();
-    }
-
+    [SerializeField] AudioSource audioSourceBox, audioSourceBaseball;
 
     /// <summary>
     /// ultimate
@@ -90,14 +81,24 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("last_level", level);
         SaveTargetScoreToPlayerPref();
 
+        // setuppp object poolign
         for (int i = 0; i < 20; i++)
         {
+            GameObject showave = Instantiate(vfxShockw);
             GameObject vfx = Instantiate(vfxExplode);
             vfxExplodes.Add(vfx);
+            vfxShockwave.Add(showave);
+            showave.SetActive(false);
             vfx.SetActive(false);
         }
 
-        characterMoveSc.isCanMove = false;
+        // setupp shields sc
+        foreach (SpriteRenderer spriteRendererShield in spriteRenderersShield)
+        {
+            spriteRendererShield.gameObject.GetComponent<ShieldScript>();
+        }
+
+        characterMoveSc.SetCannotMove();
         isPlay = false;
 
         List<NoteBalok> noteComps = FindObjectsByType<NoteBalok>(FindObjectsSortMode.None).ToList();
@@ -110,21 +111,57 @@ public class GameManager : MonoBehaviour
             Camera.main.DOOrthoSize(15f, 2f);
             Camera.main.transform.DOMoveY(0.5f, 2f);
 
-            float time = 0;
-            while (time < 2)
-            {
-                time += Time.deltaTime;
-            }
+            StartCoroutine(DelayStart());
 
-            isCanPlay = true;
         }));
     }
 
-    void ChangeAllColorShield(Color32 color)
+
+    public void PlaySound()
+    {
+        audioSourceBox.Stop();
+        audioSourceBox.loop = false;
+        audioSourceBox.volume = Random.Range(0.9f, 1.2f);
+        audioSourceBox.pitch = Random.Range(0.8f, 1.2f);
+        audioSourceBox.Play();
+    }
+
+    public void PlaySoundHitBaseball()
+    {
+        audioSourceBaseball.Stop();
+        audioSourceBaseball.loop = false;
+        audioSourceBaseball.volume = Random.Range(0.9f, 1);
+        audioSourceBaseball.pitch = Random.Range(0.9f, 1.2f);
+        audioSourceBaseball.Play();
+    }
+
+
+    IEnumerator DelayStart()
+    {
+        yield return new WaitForSeconds(2.5f);
+        isCanPlay = true;
+    }
+
+    void ChangeAllColorShield(Color32 color, bool isChangeDeathShield)
     {
         foreach (SpriteRenderer spriteRendererShield in spriteRenderersShield)
         {
-            spriteRendererShield.color = color;
+            if (isChangeDeathShield)
+            {
+                spriteRendererShield.color = color;
+            }
+            else
+            {
+                if (spriteRendererShield.gameObject.GetComponent<ShieldScript>().shield > 0)
+                {
+                    spriteRendererShield.color = color;
+                }
+                else
+                {
+                    spriteRendererShield.color = new Color32(255, 255, 255, 255);
+                }
+            }
+
         }
     }
 
@@ -138,6 +175,18 @@ public class GameManager : MonoBehaviour
     public void SpawnVfxExplode(Vector3 position)
     {
         foreach (GameObject vfx in vfxExplodes)
+        {
+            if (!vfx.activeInHierarchy)
+            {
+                vfx.transform.position = position;
+                vfx.SetActive(true);
+            }
+        }
+    }
+
+    public void SpawnVfxShockwave(Vector3 position)
+    {
+        foreach (GameObject vfx in vfxShockwave)
         {
             if (!vfx.activeInHierarchy)
             {
@@ -162,7 +211,7 @@ public class GameManager : MonoBehaviour
         // first time
         isPlay = true;
 
-        characterMoveSc.isCanMove = true;
+        characterMoveSc.SetCanMove();
         ballSc.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
     }
 
@@ -195,12 +244,11 @@ public class GameManager : MonoBehaviour
         if (IsLevelCompleted() && !isWinning)
         {
             isWinning = true;
-            characterMoveSc.isCanMove = false;
+            characterMoveSc.SetCannotMove();
             ballSc.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
             isPlay = false;
             StageWasClear();
         }
-
 
 
         if (CheckIsCanUltimate())
@@ -210,8 +258,10 @@ public class GameManager : MonoBehaviour
 
             if (isCanUlt && Input.GetKeyDown(KeyCode.K) && DetectorBall.Instance.rbBall != null)
             {
-                Ultimate = 0;
                 isCanUlt = false;
+                Ultimate = 0;
+                CharacterMove.Instance.SetCannotMove();
+                CharacterMove.Instance.rb.linearVelocity = new Vector2(0, 0);
                 StartCoroutine(UltimateActive());
             }
         }
@@ -242,7 +292,7 @@ public class GameManager : MonoBehaviour
         if (health <= 0 && !isLoose)
         {
             isLoose = true;
-            characterMoveSc.isCanMove = false;
+            characterMoveSc.SetCannotMove();
             ballSc.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
             isPlay = false;
             HUDManager.Instance.ShowGameOver();
@@ -258,7 +308,7 @@ public class GameManager : MonoBehaviour
         isCanRestoreUltimate = false;
         LightUltimate.SetActive(true);
         HUDManager.Instance.StartAnimationUlt(); // ui
-        CharacterMove.Instance.isCanMove = false;
+        // CharacterMove.Instance.SetCannotMove();
 
         // stop karakter & bola sementara
         CharacterMove.Instance.rb.linearVelocity = Vector2.zero;
@@ -282,7 +332,7 @@ public class GameManager : MonoBehaviour
 
         // kebal shield, ship
         isCanGetHit = false;
-        ChangeAllColorShield(new Color32(61, 225, 227, 255));
+        ChangeAllColorShield(new Color32(61, 225, 227, 255), true);
 
         // belah -> apply a short push then split into fragments
         CharacterHit.Instance.AddForceToBallCustomStrength(200f);
@@ -290,12 +340,12 @@ public class GameManager : MonoBehaviour
         StartCoroutine(SplitBall());
 
         yield return new WaitForSecondsRealtime(1f);
-        CharacterMove.Instance.isCanMove = true;
+        CharacterMove.Instance.SetCanMove();
 
-        yield return new WaitForSecondsRealtime(5f);
+        yield return new WaitForSecondsRealtime(4f);
         LightUltimate.SetActive(false);
         isCanGetHit = true;
-        ChangeAllColorShield(new Color32(255, 225, 255, 255));
+        ChangeAllColorShield(new Color32(255, 225, 255, 255), false);
 
         isHUDUlt = false;
         isCanRestoreUltimate = true;
@@ -396,8 +446,6 @@ public class GameManager : MonoBehaviour
             // berdasarkan balok
             if (totalBlock <= 0)
             {
-
-                Debug.Log("masuk balok");
                 return true;
             }
 

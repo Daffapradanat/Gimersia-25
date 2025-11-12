@@ -97,6 +97,8 @@ public class BallSc : MonoBehaviour
             if (!GameManager.Instance.isPlay) return;
             ShieldScript shieldScript = collider.gameObject.GetComponent<ShieldScript>();
             shieldScript.shield--;
+            StartCoroutine(shieldScript.GetHitEffect());
+            rb.AddForce(new Vector2(0, 3f), ForceMode2D.Impulse);
         }
 
         if (collider.gameObject.CompareTag("ship"))
@@ -110,8 +112,9 @@ public class BallSc : MonoBehaviour
             Camera.main.DOShakePosition(0.2f, 0.5f, 10, 60, false);
             GameManager.Instance.health--;
             HUDManager.Instance.UpdateBarHealth(GameManager.Instance.health / 5f);
+            // rb.linearVelocity = Vector2.zero;
 
-            rb.AddForce(new Vector2(0, 90f));
+            rb.AddForce(new Vector2(0, 20f), ForceMode2D.Impulse);
 
             HUDManager.Instance.HideCombo();
             HUDManager.Instance.textCombo.text = 0.ToString();

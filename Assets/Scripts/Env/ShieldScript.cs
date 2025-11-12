@@ -25,6 +25,14 @@ public class ShieldScript : MonoBehaviour
         }
     }
 
+    public IEnumerator GetHitEffect()
+    {
+
+        spriteRenderer.color = new Color32(248, 92, 92, 255);
+        yield return new WaitForSecondsRealtime(0.2f);
+        spriteRenderer.color = new Color32(255, 255, 255, 255);
+    }
+
     IEnumerator Coolodown()
     {
         isCooldown = true;

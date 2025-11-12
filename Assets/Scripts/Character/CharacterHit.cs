@@ -42,6 +42,8 @@ public class CharacterHit : MonoBehaviour
         if (detectorBallSc.rbBall == null) return;
         if (!isCanHit) return;
         isCanHit = false;
+        GameManager.Instance.PlaySoundHitBaseball();
+        GameManager.Instance.SpawnVfxShockwave(detectorBallSc.gameObject.transform.position);
         StartCoroutine(IenumaratorAddForceToBall());
     }
 
@@ -51,6 +53,8 @@ public class CharacterHit : MonoBehaviour
         if (detectorBallSc.rbBall == null) return;
         if (!isCanHit) return;
         isCanHit = false;
+        GameManager.Instance.PlaySoundHitBaseball();
+        GameManager.Instance.SpawnVfxShockwave(detectorBallSc.gameObject.transform.position);
         StartCoroutine(IenumaratorAddForceToBallCustomStrrngth(strength));
     }
     IEnumerator IenumaratorAddForceToBall()

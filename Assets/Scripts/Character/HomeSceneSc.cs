@@ -14,7 +14,7 @@ public class HomeSceneSc : MonoBehaviour
 
     void Start()
     {
-
+        Time.timeScale = 1f;
         Instance = this;
         // cek level
         lastLevel = PlayerPrefs.GetInt("last_level", 0);

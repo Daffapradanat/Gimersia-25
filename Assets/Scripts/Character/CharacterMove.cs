@@ -23,9 +23,27 @@ public class CharacterMove : MonoBehaviour
         Instance = this;
     }
 
+    public void SetCannotMove()
+    {
+        // hentikan momentum dan hentikan dash
+        rb.linearVelocity = Vector2.zero;
+        rb.angularVelocity = 0f;
+        isDashing = false;
+        movement = Vector2.zero;
+
+        rb.bodyType = RigidbodyType2D.Kinematic;
+        isCanMove = false;
+    }
+
+    public void SetCanMove()
+    {
+        rb.bodyType = RigidbodyType2D.Dynamic;
+        isCanMove = true;
+    }
+
     void Update()
     {
-         if (!GameManager.Instance.isPlay) return;
+        if (!GameManager.Instance.isPlay) return;
         if (!isCanMove)
             return;
         // Ambil input player

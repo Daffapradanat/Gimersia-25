@@ -1,0 +1,515 @@
+fileFormatVersion: 2
+guid: 01488446f8147b046874e1d36b2f72b8
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7106133716495641054
+    second: shockwave-ezgif.com-gif-to-sprite-converter_0
+  - first:
+      213: 6653266509978391240
+    second: shockwave-ezgif.com-gif-to-sprite-converter_1
+  - first:
+      213: 1765671246321917212
+    second: shockwave-ezgif.com-gif-to-sprite-converter_2
+  - first:
+      213: -8319707369849367358
+    second: shockwave-ezgif.com-gif-to-sprite-converter_3
+  - first:
+      213: 7862683648647198568
+    second: shockwave-ezgif.com-gif-to-sprite-converter_4
+  - first:
+      213: -60117482584599908
+    second: shockwave-ezgif.com-gif-to-sprite-converter_5
+  - first:
+      213: 4294486726415971342
+    second: shockwave-ezgif.com-gif-to-sprite-converter_6
+  - first:
+      213: -2931794862039741327
+    second: shockwave-ezgif.com-gif-to-sprite-converter_7
+  - first:
+      213: 4649950505664434929
+    second: shockwave-ezgif.com-gif-to-sprite-converter_8
+  - first:
+      213: 7481452605816599326
+    second: shockwave-ezgif.com-gif-to-sprite-converter_9
+  - first:
+      213: 3745653707263600760
+    second: shockwave-ezgif.com-gif-to-sprite-converter_10
+  - first:
+      213: 8687415462421155057
+    second: shockwave-ezgif.com-gif-to-sprite-converter_11
+  - first:
+      213: 8899867594906935663
+    second: shockwave-ezgif.com-gif-to-sprite-converter_12
+  - first:
+      213: 8837271016077989105
+    second: shockwave-ezgif.com-gif-to-sprite-converter_13
+  - first:
+      213: 2692043485037674737
+    second: shockwave-ezgif.com-gif-to-sprite-converter_14
+  - first:
+      213: -5159772281190509261
+    second: shockwave-ezgif.com-gif-to-sprite-converter_15
+  - first:
+      213: 448336739212508886
+    second: shockwave-ezgif.com-gif-to-sprite-converter_16
+  - first:
+      213: 7795808208486042679
+    second: shockwave-ezgif.com-gif-to-sprite-converter_17
+  - first:
+      213: -7443260863020637294
+    second: shockwave-ezgif.com-gif-to-sprite-converter_18
+  - first:
+      213: -2126321472253127711
+    second: shockwave-ezgif.com-gif-to-sprite-converter_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: shockwave-ezgif.com-gif-to-sprite-converter_1
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 24
+        width: 157
+        height: 144
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c2d34be3a6255c50800000000000000
+      internalID: 6653266509978391240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shockwave-ezgif.com-gif-to-sprite-converter_2
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 25
+        width: 145
+        height: 145
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1d9323c4ace08810800000000000000
+      internalID: 1765671246321917212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shockwave-ezgif.com-gif-to-sprite-converter_3
+      rect:
+        serializedVersion: 2
+        x: 689
+        y: 149
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c4dde01a367a8c80800000000000000
+      internalID: -8319707369849367358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shockwave-ezgif.com-gif-to-sprite-converter_4
+      rect:
+        serializedVersion: 2
+        x: 743
+        y: 149
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86773e2ce1ddd1d60800000000000000
+      internalID: 7862683648647198568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shockwave-ezgif.com-gif-to-sprite-converter_6
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 23
+        width: 159
+        height: 142
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0477acace4199b30800000000000000
+      internalID: 4294486726415971342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shockwave-ezgif.com-gif-to-sprite-converter_7
+      rect:
+        serializedVersion: 2
+        x: 653
+        y: 113
+        width: 8
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17c4ec53b1c2057d0800000000000000
+      internalID: -2931794862039741327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shockwave-ezgif.com-gif-to-sprite-converter_8
+      rect:
+        serializedVersion: 2
+        x: 773
+        y: 119
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f2d6413951f78040800000000000000
+      internalID: 4649950505664434929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shockwave-ezgif.com-gif-to-sprite-converter_9
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 25
+        width: 163
+        height: 138
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e137e9da18573d760800000000000000
+      internalID: 7481452605816599326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shockwave-ezgif.com-gif-to-sprite-converter_12
+      rect:
+        serializedVersion: 2
+        x: 773
+        y: 71
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f61207e8c6ea28b70800000000000000
+      internalID: 8899867594906935663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shockwave-ezgif.com-gif-to-sprite-converter_13
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 59
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f41f21da2b44aa70800000000000000
+      internalID: 8837271016077989105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shockwave-ezgif.com-gif-to-sprite-converter_18
+      rect:
+        serializedVersion: 2
+        x: 695
+        y: 29
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29366116ea934b890800000000000000
+      internalID: -7443260863020637294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shockwave-ezgif.com-gif-to-sprite-converter_19
+      rect:
+        serializedVersion: 2
+        x: 731
+        y: 29
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e3111003e9cd72e0800000000000000
+      internalID: -2126321472253127711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: d940b27b99b78f941a66afbbd222666b
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":2,"spriteAlignment":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      shockwave-ezgif.com-gif-to-sprite-converter_0: 7106133716495641054
+      shockwave-ezgif.com-gif-to-sprite-converter_1: 6653266509978391240
+      shockwave-ezgif.com-gif-to-sprite-converter_10: 3745653707263600760
+      shockwave-ezgif.com-gif-to-sprite-converter_11: 8687415462421155057
+      shockwave-ezgif.com-gif-to-sprite-converter_12: 8899867594906935663
+      shockwave-ezgif.com-gif-to-sprite-converter_13: 8837271016077989105
+      shockwave-ezgif.com-gif-to-sprite-converter_14: 2692043485037674737
+      shockwave-ezgif.com-gif-to-sprite-converter_15: -5159772281190509261
+      shockwave-ezgif.com-gif-to-sprite-converter_16: 448336739212508886
+      shockwave-ezgif.com-gif-to-sprite-converter_17: 7795808208486042679
+      shockwave-ezgif.com-gif-to-sprite-converter_18: -7443260863020637294
+      shockwave-ezgif.com-gif-to-sprite-converter_19: -2126321472253127711
+      shockwave-ezgif.com-gif-to-sprite-converter_2: 1765671246321917212
+      shockwave-ezgif.com-gif-to-sprite-converter_3: -8319707369849367358
+      shockwave-ezgif.com-gif-to-sprite-converter_4: 7862683648647198568
+      shockwave-ezgif.com-gif-to-sprite-converter_5: -60117482584599908
+      shockwave-ezgif.com-gif-to-sprite-converter_6: 4294486726415971342
+      shockwave-ezgif.com-gif-to-sprite-converter_7: -2931794862039741327
+      shockwave-ezgif.com-gif-to-sprite-converter_8: 4649950505664434929
+      shockwave-ezgif.com-gif-to-sprite-converter_9: 7481452605816599326
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
