@@ -72,6 +72,11 @@ public class MinionSpawner : MonoBehaviour
 
     void OnValidate()
     {
+        if (minionPrefabs == null || minionPrefabs.Length == 0)
+        {
+            return;
+        }
+
         foreach (var prefab in minionPrefabs)
         {
             if (prefab != null && prefab.GetComponent<MinionController>() == null)

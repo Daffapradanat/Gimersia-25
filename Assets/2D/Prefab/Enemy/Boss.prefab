@@ -11,15 +11,15 @@ GameObject:
   - component: {fileID: 4699455030981960915}
   - component: {fileID: 2625912017641999521}
   - component: {fileID: 1427638296417629611}
+  - component: {fileID: 4512426062876943770}
   - component: {fileID: 2898076011994033956}
   - component: {fileID: 8357396159586217314}
   - component: {fileID: 8615895415407371855}
   - component: {fileID: 1290898908583476309}
-  - component: {fileID: 4512426062876943770}
   - component: {fileID: 7555174008661457889}
   m_Layer: 0
   m_Name: Boss
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -114,7 +114,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: ef04220a0509a8a488c53976b7c61a97, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -125,6 +125,28 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 6
+--- !u!95 &4512426062876943770
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604306753086643643}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 809e83779589cd54b810a15dc3fa139b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!68 &2898076011994033956
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -244,28 +266,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 718ed8475be5dc8469d9aedaf5960029, type: 2}
   - {fileID: 11400000, guid: 7212e220a5ff23b42a6472a880972578, type: 2}
   - {fileID: 11400000, guid: 6fa375abc24c0184d8dcf5d2aad19c6a, type: 2}
---- !u!95 &4512426062876943770
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1604306753086643643}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 809e83779589cd54b810a15dc3fa139b, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &7555174008661457889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -286,6 +286,7 @@ MonoBehaviour:
   deathExplosionPrefab: {fileID: 228339704588088560, guid: b2e66c956a8830f42b0b3de3c15e13ec, type: 3}
   explosionScale: 1
   explosionOffset: {x: 0, y: 0, z: 0}
+  useAnimationEvent: 0
   preExplosionDelay: 0.15
   postExplosionFadeDelay: 0.3
   finalDestroyDelay: 2

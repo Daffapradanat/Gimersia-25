@@ -844,7 +844,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 26.5, y: -13, z: 0}
-  m_LocalScale: {x: 30, y: 2, z: 1}
+  m_LocalScale: {x: 35, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1472010324}
@@ -4104,6 +4104,44 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1037290747 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1604306753086643643, guid: 75de630ebd43b6c4b8c4b537668e8047, type: 3}
+  m_PrefabInstance: {fileID: 1558198181}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1037290748 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7555174008661457889, guid: 75de630ebd43b6c4b8c4b537668e8047, type: 3}
+  m_PrefabInstance: {fileID: 1558198181}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037290747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9344f445f1a0cd94e9a166751bdb577a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossAnimationController
+--- !u!114 &1037290750 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1290898908583476309, guid: 75de630ebd43b6c4b8c4b537668e8047, type: 3}
+  m_PrefabInstance: {fileID: 1558198181}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037290747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27015c5a2b4f58449890947451cfd6e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossAttackManager
+--- !u!114 &1037290751 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8615895415407371855, guid: 75de630ebd43b6c4b8c4b537668e8047, type: 3}
+  m_PrefabInstance: {fileID: 1558198181}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037290747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fdfa319eca4f02418d55f0418fe762a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossController
 --- !u!1 &1080175043
 GameObject:
   m_ObjectHideFlags: 0
@@ -6049,6 +6087,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 1604306753086643643, guid: 75de630ebd43b6c4b8c4b537668e8047, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 4699455030981960915, guid: 75de630ebd43b6c4b8c4b537668e8047, type: 3}
       propertyPath: m_LocalScale.x
       value: 2
@@ -6247,7 +6289,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: -24.5, y: -13, z: 0}
-  m_LocalScale: {x: 30, y: 2, z: 1}
+  m_LocalScale: {x: 35, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1472010324}
@@ -7981,12 +8023,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4674142110448062398, guid: 97334de1e0a96964dbd32ce201e9f325, type: 3}
       propertyPath: m_Name
-      value: Spawn_Minion
+      value: SpawnManager
       objectReference: {fileID: 0}
     - target: {fileID: 4674142110448062398, guid: 97334de1e0a96964dbd32ce201e9f325, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6450382316672645996, guid: 97334de1e0a96964dbd32ce201e9f325, type: 3}
+      propertyPath: bossObject
+      value: 
+      objectReference: {fileID: 1037290747}
+    - target: {fileID: 6450382316672645996, guid: 97334de1e0a96964dbd32ce201e9f325, type: 3}
+      propertyPath: bossController
+      value: 
+      objectReference: {fileID: 1037290751}
+    - target: {fileID: 6450382316672645996, guid: 97334de1e0a96964dbd32ce201e9f325, type: 3}
+      propertyPath: bossAttackManager
+      value: 
+      objectReference: {fileID: 1037290750}
+    - target: {fileID: 6450382316672645996, guid: 97334de1e0a96964dbd32ce201e9f325, type: 3}
+      propertyPath: bossSpawnPosition.y
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6450382316672645996, guid: 97334de1e0a96964dbd32ce201e9f325, type: 3}
+      propertyPath: bossAnimationController
+      value: 
+      objectReference: {fileID: 1037290748}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8820,7 +8882,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6626472569792377097, guid: dc1becbdb5ab0e94885a420f99ca7a60, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5
+      value: -7
       objectReference: {fileID: 0}
     - target: {fileID: 6626472569792377097, guid: dc1becbdb5ab0e94885a420f99ca7a60, type: 3}
       propertyPath: m_LocalPosition.z
