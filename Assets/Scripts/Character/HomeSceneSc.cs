@@ -67,7 +67,7 @@ public class HomeSceneSc : MonoBehaviour
 
     public void CreditMenu()
     {
-        SceneManager.LoadScene("CreditScene", LoadSceneMode.Additive);
+        SceneManager.LoadScene("CreditScene");
     }
 
     public void QuitGame()

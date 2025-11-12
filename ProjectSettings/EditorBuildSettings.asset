@@ -38,6 +38,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/CutScene01.unity
     guid: a79ea38e2c092b54e929d40373642150
+  - enabled: 1
+    path: Assets/Game2.unity
+    guid: a09ec5fd8c88b8f479cfc49c32690ae8
+  - enabled: 1
+    path: Assets/Scenes/Game3.unity
+    guid: 93bfb7f96b1d32c4c96c790f0c5f3633
+  - enabled: 1
+    path: Assets/Scenes/MissionComplete.unity
+    guid: b1d406158c6bd0641b7c0bc03dbd09fa
+  - enabled: 1
+    path: Assets/Scenes/Game4.unity
+    guid: f4882bda899e12a42aa900fbbbb614ee
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

@@ -5,6 +5,7 @@ using UnityEngine;
 public class BallSc : MonoBehaviour
 {
     public Rigidbody2D rb;
+    public bool IsFragment = true;
 
     void Start()
     {
@@ -12,7 +13,7 @@ public class BallSc : MonoBehaviour
     }
     IEnumerator OnTouchBrick(GameObject noteblock)
     {
-        
+
         // Freeze time (pause effect)
         Camera.main.DOShakePosition(0.2f, 0.5f, 10, 60, false);
         NoteBalok noteBalokSc = noteblock.GetComponent<NoteBalok>();
@@ -21,7 +22,8 @@ public class BallSc : MonoBehaviour
         StartCoroutine(noteBalokSc.HitEffect());
 
         GameManager.Instance.AddScore();
-        GameManager.Instance.Ultimate += 0.02f;
+        if (GameManager.Instance.isCanRestoreUltimate) GameManager.Instance.Ultimate += 0.05f;
+
         GameManager.Instance.combo++;
         HUDManager.Instance.ShowCombo(GameManager.Instance.combo++);
 
@@ -48,6 +50,7 @@ public class BallSc : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("wall"))
         {
+            if (IsFragment) return;
             StartCoroutine(OnTouchWall());
         }
 
@@ -63,6 +66,7 @@ public class BallSc : MonoBehaviour
 
         if (collider.gameObject.CompareTag("shield"))
         {
+            if (IsFragment) return;
             if (!GameManager.Instance.isPlay) return;
             ShieldScript shieldScript = collider.gameObject.GetComponent<ShieldScript>();
             shieldScript.shield--;
@@ -70,6 +74,8 @@ public class BallSc : MonoBehaviour
 
         if (collider.gameObject.CompareTag("ship"))
         {
+            if (IsFragment) return;
+            if (!GameManager.Instance.isCanGetHit) return;
             if (!GameManager.Instance.isPlay) return;
 
             PPScript.Instance.HitEffect();
@@ -84,6 +90,6 @@ public class BallSc : MonoBehaviour
             HUDManager.Instance.textCombo.text = 0.ToString();
             GameManager.Instance.combo = 0;
         }
-        
+
     }
 }

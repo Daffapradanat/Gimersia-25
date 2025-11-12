@@ -179,10 +179,10 @@ TextureImporter:
       name: Karakter slash_0
       rect:
         serializedVersion: 2
-        x: 127
-        y: 111
-        width: 290
-        height: 302
+        x: 128
+        y: 112
+        width: 288
+        height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -198,37 +198,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Karakter slash_1
-      rect:
-        serializedVersion: 2
-        x: 667
-        y: 367
-        width: 34
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 52f93271f03ba28a0800000000000000
-      internalID: -6329049448921719003
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Karakter slash_2
       rect:
         serializedVersion: 2
-        x: 691
-        y: 111
-        width: 198
-        height: 306
+        x: 641
+        y: 112
+        width: 288
+        height: 320
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -242,37 +220,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Karakter slash_3
-      rect:
-        serializedVersion: 2
-        x: 875
-        y: 383
-        width: 30
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 41ca3b37f391f3ac0800000000000000
-      internalID: -3873349394200548332
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Karakter slash_4
       rect:
         serializedVersion: 2
-        x: 1235
-        y: 111
-        width: 130
-        height: 306
+        x: 1150
+        y: 112
+        width: 288
+        height: 320
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -289,10 +245,10 @@ TextureImporter:
       name: Karakter slash_5
       rect:
         serializedVersion: 2
-        x: 1663
-        y: 111
-        width: 290
-        height: 302
+        x: 1664
+        y: 112
+        width: 288
+        height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -307,77 +263,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Karakter slash_6
-      rect:
-        serializedVersion: 2
-        x: 1715
-        y: 371
-        width: 82
-        height: 50
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0da9d90da6682d860800000000000000
-      internalID: 7553247318378388176
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Karakter slash_7
-      rect:
-        serializedVersion: 2
-        x: 1819
-        y: 399
-        width: 94
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4081ad0911ae958b0800000000000000
-      internalID: -5162838136638007292
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Karakter slash_8
-      rect:
-        serializedVersion: 2
-        x: 859
-        y: 367
-        width: 34
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5bacc53b0623d4ac0800000000000000
-      internalID: -3869381113933935947
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 8346da9d9bc792e409080f6de91c1ed3
     internalID: 0
     vertices: []
     indices: 
@@ -385,7 +275,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":1,"spriteAlignment":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       Karakter slash_0: -4650314131701536805
       Karakter slash_1: -6329049448921719003
