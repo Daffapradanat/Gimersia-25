@@ -647,6 +647,7 @@ Transform:
   m_LocalScale: {x: 1.3, y: 1.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 844864230}
   - {fileID: 503068350}
   - {fileID: 1939744446}
   - {fileID: 967418684}
@@ -999,9 +1000,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c33e150da74ef2a47af0dc21db553cf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxShield: 5
-  shield: 0
-  durationCooldown: 35
+  maxShield: 15
+  shield: 10
+  durationCooldown: 25
 --- !u!61 &336212115
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2984,9 +2985,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c33e150da74ef2a47af0dc21db553cf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxShield: 5
-  shield: 0
-  durationCooldown: 35
+  maxShield: 15
+  shield: 10
+  durationCooldown: 25
 --- !u!61 &916723354
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3273,9 +3274,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c33e150da74ef2a47af0dc21db553cf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxShield: 5
-  shield: 0
-  durationCooldown: 35
+  maxShield: 15
+  shield: 10
+  durationCooldown: 25
 --- !u!61 &947853911
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3997,9 +3998,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c33e150da74ef2a47af0dc21db553cf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxShield: 5
-  shield: 0
-  durationCooldown: 35
+  maxShield: 15
+  shield: 10
+  durationCooldown: 25
 --- !u!61 &1034377482
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4594,9 +4595,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c33e150da74ef2a47af0dc21db553cf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxShield: 5
-  shield: 0
-  durationCooldown: 35
+  maxShield: 15
+  shield: 10
+  durationCooldown: 25
 --- !u!61 &1211927746
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4932,9 +4933,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c33e150da74ef2a47af0dc21db553cf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxShield: 5
-  shield: 0
-  durationCooldown: 35
+  maxShield: 15
+  shield: 10
+  durationCooldown: 25
 --- !u!61 &1378590667
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5811,9 +5812,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c33e150da74ef2a47af0dc21db553cf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxShield: 5
-  shield: 0
-  durationCooldown: 35
+  maxShield: 15
+  shield: 10
+  durationCooldown: 25
 --- !u!61 &1540579053
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5964,9 +5965,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c33e150da74ef2a47af0dc21db553cf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxShield: 5
-  shield: 0
-  durationCooldown: 35
+  maxShield: 15
+  shield: 10
+  durationCooldown: 25
 --- !u!61 &1547389945
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6083,6 +6084,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 266219839}
+    - target: {fileID: 1290898908583476309, guid: 75de630ebd43b6c4b8c4b537668e8047, type: 3}
+      propertyPath: attackCooldown
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1604306753086643643, guid: 75de630ebd43b6c4b8c4b537668e8047, type: 3}
       propertyPath: m_Name
       value: Boss
@@ -7229,9 +7234,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c33e150da74ef2a47af0dc21db553cf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxShield: 5
-  shield: 0
-  durationCooldown: 35
+  maxShield: 15
+  shield: 10
+  durationCooldown: 25
 --- !u!61 &1785903483
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7382,9 +7387,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c33e150da74ef2a47af0dc21db553cf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxShield: 5
-  shield: 0
-  durationCooldown: 35
+  maxShield: 15
+  shield: 10
+  durationCooldown: 25
 --- !u!61 &1808593427
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7955,7 +7960,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 2375478cbe4f7e246a70929d3ccce3c3, type: 3}
     - target: {fileID: 596016037142301092, guid: 97334de1e0a96964dbd32ce201e9f325, type: 3}
       propertyPath: spawnDelay
-      value: 0.2
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 596016037142301092, guid: 97334de1e0a96964dbd32ce201e9f325, type: 3}
       propertyPath: spawnLeft.x
@@ -8380,9 +8385,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c33e150da74ef2a47af0dc21db553cf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxShield: 5
-  shield: 0
-  durationCooldown: 35
+  maxShield: 15
+  shield: 10
+  durationCooldown: 25
 --- !u!61 &1950106111
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8741,9 +8746,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c33e150da74ef2a47af0dc21db553cf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxShield: 5
-  shield: 0
-  durationCooldown: 35
+  maxShield: 15
+  shield: 10
+  durationCooldown: 25
 --- !u!61 &2020372630
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8854,12 +8859,16 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 266219839}
     m_Modifications:
     - target: {fileID: 577889877850807399, guid: dc1becbdb5ab0e94885a420f99ca7a60, type: 3}
       propertyPath: rb
       value: 
       objectReference: {fileID: 1471782199}
+    - target: {fileID: 577889877850807399, guid: dc1becbdb5ab0e94885a420f99ca7a60, type: 3}
+      propertyPath: enemyDamage
+      value: 35
+      objectReference: {fileID: 0}
     - target: {fileID: 2100022207473514730, guid: dc1becbdb5ab0e94885a420f99ca7a60, type: 3}
       propertyPath: m_BodyType
       value: 1
@@ -8870,11 +8879,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6626472569792377097, guid: dc1becbdb5ab0e94885a420f99ca7a60, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.8
+      value: 0.61538464
       objectReference: {fileID: 0}
     - target: {fileID: 6626472569792377097, guid: dc1becbdb5ab0e94885a420f99ca7a60, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.8
+      value: 0.61538464
       objectReference: {fileID: 0}
     - target: {fileID: 6626472569792377097, guid: dc1becbdb5ab0e94885a420f99ca7a60, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8882,7 +8891,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6626472569792377097, guid: dc1becbdb5ab0e94885a420f99ca7a60, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7
+      value: 2.9846156
       objectReference: {fileID: 0}
     - target: {fileID: 6626472569792377097, guid: dc1becbdb5ab0e94885a420f99ca7a60, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9158,9 +9167,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c33e150da74ef2a47af0dc21db553cf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxShield: 5
-  shield: 0
-  durationCooldown: 35
+  maxShield: 15
+  shield: 10
+  durationCooldown: 25
 --- !u!61 &2110406995
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9271,7 +9280,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 1566865057}
   - {fileID: 1648584518}
-  - {fileID: 2023001708}
   - {fileID: 266219839}
   - {fileID: 1558198181}
   - {fileID: 1935014643}

@@ -153,8 +153,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MinionController
   flySpeed: 8
-  minAttackCooldown: 10
-  maxAttackCooldown: 20
+  swaySpeed: 2
+  swayAmount: 1.5
+  swayRandomness: 0.3
+  avoidanceRadius: 1.2
+  avoidanceForce: 3
+  minionLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  minAttackCooldown: 15
+  maxAttackCooldown: 25
   maxActiveBullets: 2
   bulletPrefab: {fileID: 56758889346395131, guid: 83526545a6ef578468d5bdff767e06f9, type: 3}
   customBulletSpeed: 5

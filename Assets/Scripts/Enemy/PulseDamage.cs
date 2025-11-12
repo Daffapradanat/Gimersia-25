@@ -16,6 +16,11 @@ public class PulseDamage : MonoBehaviour
     [SerializeField] bool destroyOnWall = true;
     [SerializeField] LayerMask wallLayers;
     
+    [Header("Slow Effect")]
+    [SerializeField] bool applySlowToPlayer = false;
+    [SerializeField] float slowDuration = 2f;
+    [SerializeField] float slowMultiplier = 0.5f;
+    
     bool hasDealtDamage;
     float originalDamage;
 
@@ -66,6 +71,15 @@ public class PulseDamage : MonoBehaviour
             if (hitResponse != null)
             {
                 hitResponse.OnHit(damage);
+                
+                if (applySlowToPlayer)
+                {
+                    PlayerSlowEffect slowEffect = target.GetComponent<PlayerSlowEffect>();
+                    if (slowEffect != null)
+                    {
+                        slowEffect.ApplySlow(slowDuration, slowMultiplier);
+                    }
+                }
                 
                 if (destroyOnHit)
                 {

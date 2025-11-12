@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class BossSceneManager : MonoBehaviour
 {
@@ -15,22 +16,20 @@ public class BossSceneManager : MonoBehaviour
     
     [Header("Timing")]
     [SerializeField] float delayBeforeBossAppears = 20f;
-    [SerializeField] float entranceDialogDuration = 3f;
-    [SerializeField] float deathDialogDuration = 3f;
+    [SerializeField] float dialogDisplayDuration = 2f;
     
     [Header("Dialog UI")]
     [SerializeField] GameObject dialogPanel;
     [SerializeField] TextMeshProUGUI dialogText;
     [SerializeField] Image bossPortrait;
     [SerializeField] float textSpeed = 0.05f;
+    [SerializeField] KeyCode skipKey = KeyCode.Space;
     
-    [Header("Entrance Dialog")]
-    [SerializeField] string entranceDialog = "Finally... you dare challenge me!";
-    [SerializeField] Sprite entrancePortrait;
+    [Header("Entrance Dialogs")]
+    [SerializeField] DialogData[] entranceDialogs;
     
-    [Header("Death Dialog")]
-    [SerializeField] string deathDialog = "Impossible... I cannot be defeated!";
-    [SerializeField] Sprite deathPortrait;
+    [Header("Death Dialogs")]
+    [SerializeField] DialogData[] deathDialogs;
     
     [Header("Effects")]
     [SerializeField] GameObject bossEntranceVFX;
@@ -38,11 +37,16 @@ public class BossSceneManager : MonoBehaviour
     [SerializeField] float entranceShakeDuration = 0.5f;
     [SerializeField] float entranceShakeStrength = 0.8f;
     
+    [Header("Death Sequence Settings")]
+    [SerializeField] float maxDeathWaitTime = 5f;
+    
     bool bossHasAppeared;
     bool bossIsDead;
     bool dialogIsPlaying;
     bool bossSequenceStarted;
-    Coroutine currentDialogCoroutine;
+    bool isTyping;
+    string currentFullText;
+    Coroutine typingCoroutine;
     float gameTimer;
 
     void Awake()
@@ -62,15 +66,21 @@ public class BossSceneManager : MonoBehaviour
 
     void Update()
     {
-        if (bossSequenceStarted) return;
-        
-        gameTimer += Time.deltaTime;
-        
-        if (gameTimer >= delayBeforeBossAppears)
+        if (!bossSequenceStarted)
         {
-            Debug.Log($"[BossSceneManager] Timer reached! Starting boss appearance. Time: {gameTimer}");
-            bossSequenceStarted = true;
-            StartCoroutine(BossAppearanceSequence());
+            gameTimer += Time.deltaTime;
+            
+            if (gameTimer >= delayBeforeBossAppears)
+            {
+                Debug.Log($"[BossSceneManager] Timer reached! Starting boss appearance. Time: {gameTimer}");
+                bossSequenceStarted = true;
+                StartCoroutine(BossAppearanceSequence());
+            }
+        }
+
+        if (dialogIsPlaying && Input.GetKeyDown(skipKey))
+        {
+            SkipTyping();
         }
     }
 
@@ -156,7 +166,7 @@ public class BossSceneManager : MonoBehaviour
         
         yield return new WaitForSeconds(0.5f);
         
-        yield return ShowDialog(entranceDialog, entrancePortrait, entranceDialogDuration);
+        yield return ShowDialogs(entranceDialogs);
         
         Debug.Log("[BossSceneManager] Enabling boss components...");
         EnableBossComponents();
@@ -184,22 +194,73 @@ public class BossSceneManager : MonoBehaviour
         
         yield return new WaitForSeconds(0.3f);
         
-        yield return ShowDialog(deathDialog, deathPortrait, deathDialogDuration);
+        yield return ShowDialogs(deathDialogs);
+        
+        bool deathCompleted = false;
         
         if (bossAnimationController != null)
         {
+            System.Action originalCallback = null;
+            originalCallback = () => {
+                deathCompleted = true;
+                bossAnimationController.OnDeathAnimationComplete -= originalCallback;
+            };
+            
+            bossAnimationController.OnDeathAnimationComplete += originalCallback;
             bossAnimationController.ExecuteDeathWithoutDialog();
+            
+            float waitTimer = 0f;
+            while (!deathCompleted && waitTimer < maxDeathWaitTime)
+            {
+                waitTimer += Time.deltaTime;
+                yield return null;
+            }
+            
+            if (!deathCompleted)
+            {
+                Debug.LogWarning("[BossSceneManager] Death animation took too long or didn't complete. Force unfreezing...");
+                bossAnimationController.OnDeathAnimationComplete -= originalCallback;
+            }
         }
+        else
+        {
+            yield return new WaitForSeconds(1f);
+        }
+        
+        HandleBossDeathComplete();
     }
 
     void HandleBossDeathComplete()
     {
+        Debug.Log("[BossSceneManager] Boss death complete, unfreezing everything...");
         FreezeAllEnemies(false);
         FreezePlayer(false);
     }
 
-    IEnumerator ShowDialog(string text, Sprite portrait, float duration)
+    IEnumerator ShowDialogs(DialogData[] dialogs)
     {
+        if (dialogs == null || dialogs.Length == 0)
+        {
+            Debug.LogWarning("[BossSceneManager] No dialogs to show! Skipping...");
+            yield break;
+        }
+
+        bool hasValidDialog = false;
+        foreach (DialogData dialog in dialogs)
+        {
+            if (dialog != null && !string.IsNullOrEmpty(dialog.text))
+            {
+                hasValidDialog = true;
+                break;
+            }
+        }
+
+        if (!hasValidDialog)
+        {
+            Debug.LogWarning("[BossSceneManager] No valid dialogs found! Skipping...");
+            yield break;
+        }
+
         if (dialogPanel == null)
         {
             Debug.LogWarning("[BossSceneManager] Dialog Panel is NULL! Skipping dialog...");
@@ -211,18 +272,49 @@ public class BossSceneManager : MonoBehaviour
             Debug.LogWarning("[BossSceneManager] Dialog Text is NULL! Skipping dialog...");
             yield break;
         }
-        
-        Debug.Log($"[BossSceneManager] Showing dialog: {text}");
-        
+
         dialogIsPlaying = true;
         dialogPanel.SetActive(true);
-        
-        if (bossPortrait != null && portrait != null)
+
+        foreach (DialogData dialog in dialogs)
         {
-            bossPortrait.sprite = portrait;
-            bossPortrait.enabled = true;
+            if (dialog == null || string.IsNullOrEmpty(dialog.text)) continue;
+
+            Debug.Log($"[BossSceneManager] Showing dialog: {dialog.text}");
+
+            if (bossPortrait != null && dialog.portrait != null)
+            {
+                bossPortrait.sprite = dialog.portrait;
+                bossPortrait.enabled = true;
+            }
+
+            currentFullText = dialog.text;
+            dialogText.text = "";
+            isTyping = true;
+
+            if (typingCoroutine != null)
+            {
+                StopCoroutine(typingCoroutine);
+            }
+
+            typingCoroutine = StartCoroutine(TypeText(dialog.text));
+
+            while (isTyping)
+            {
+                yield return null;
+            }
+
+            yield return new WaitForSeconds(dialogDisplayDuration);
         }
+
+        dialogPanel.SetActive(false);
+        dialogIsPlaying = false;
         
+        Debug.Log("[BossSceneManager] All dialogs finished");
+    }
+
+    IEnumerator TypeText(string text)
+    {
         dialogText.text = "";
         
         foreach (char c in text)
@@ -230,13 +322,22 @@ public class BossSceneManager : MonoBehaviour
             dialogText.text += c;
             yield return new WaitForSeconds(textSpeed);
         }
-        
-        yield return new WaitForSeconds(duration);
-        
-        dialogPanel.SetActive(false);
-        dialogIsPlaying = false;
-        
-        Debug.Log("[BossSceneManager] Dialog finished");
+
+        isTyping = false;
+    }
+
+    void SkipTyping()
+    {
+        if (isTyping)
+        {
+            if (typingCoroutine != null)
+            {
+                StopCoroutine(typingCoroutine);
+            }
+
+            dialogText.text = currentFullText;
+            isTyping = false;
+        }
     }
 
     void DisableBossComponents()
@@ -271,6 +372,38 @@ public class BossSceneManager : MonoBehaviour
         foreach (MinionController minion in minions)
         {
             minion.enabled = !freeze;
+            
+            Rigidbody2D minionRb = minion.GetComponent<Rigidbody2D>();
+            if (minionRb != null)
+            {
+                if (freeze)
+                {
+                    minionRb.linearVelocity = Vector2.zero;
+                    minionRb.simulated = false;
+                }
+                else
+                {
+                    minionRb.simulated = true;
+                }
+            }
+        }
+        
+        ProjectileController[] projectiles = FindObjectsByType<ProjectileController>(FindObjectsSortMode.None);
+        foreach (ProjectileController projectile in projectiles)
+        {
+            Rigidbody2D projRb = projectile.GetComponent<Rigidbody2D>();
+            if (projRb != null)
+            {
+                if (freeze)
+                {
+                    projRb.linearVelocity = Vector2.zero;
+                    projRb.simulated = false;
+                }
+                else
+                {
+                    projRb.simulated = true;
+                }
+            }
         }
         
         if (MinionSpawner.Instance != null)
@@ -310,6 +443,23 @@ public class BossSceneManager : MonoBehaviour
                 }
             }
         }
+        
+        Rigidbody2D[] allBalls = FindObjectsByType<Rigidbody2D>(FindObjectsSortMode.None);
+        foreach (Rigidbody2D ball in allBalls)
+        {
+            if (ball.gameObject.CompareTag("Ball") || ball.GetComponent<BallSc>() != null)
+            {
+                if (freeze)
+                {
+                    ball.linearVelocity = Vector2.zero;
+                    ball.simulated = false;
+                }
+                else
+                {
+                    ball.simulated = true;
+                }
+            }
+        }
     }
 
     IEnumerator ShakeCamera(float duration, float strength)
@@ -321,8 +471,8 @@ public class BossSceneManager : MonoBehaviour
         
         while (elapsed < duration)
         {
-            float x = Random.Range(-1f, 1f) * strength;
-            float y = Random.Range(-1f, 1f) * strength;
+            float x = UnityEngine.Random.Range(-1f, 1f) * strength;
+            float y = UnityEngine.Random.Range(-1f, 1f) * strength;
             
             Camera.main.transform.position = new Vector3(
                 originalPos.x + x,
@@ -335,19 +485,6 @@ public class BossSceneManager : MonoBehaviour
         }
         
         Camera.main.transform.position = originalPos;
-    }
-
-    public void SkipDialog()
-    {
-        if (dialogIsPlaying && currentDialogCoroutine != null)
-        {
-            StopCoroutine(currentDialogCoroutine);
-            if (dialogPanel != null)
-            {
-                dialogPanel.SetActive(false);
-            }
-            dialogIsPlaying = false;
-        }
     }
 
     public bool IsBossActive()
@@ -367,4 +504,11 @@ public class BossSceneManager : MonoBehaviour
         Gizmos.DrawLine(bossSpawnPosition + Vector3.up, bossSpawnPosition + Vector3.down);
         Gizmos.DrawLine(bossSpawnPosition + Vector3.left, bossSpawnPosition + Vector3.right);
     }
+}
+
+[Serializable]
+public class DialogData
+{
+    public string text;
+    public Sprite portrait;
 }

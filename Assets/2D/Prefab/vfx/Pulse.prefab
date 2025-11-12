@@ -176,6 +176,7 @@ MonoBehaviour:
   pulseSpeed: 1
   pulseMinScale: 0.8
   pulseMaxScale: 1.2
+  stopDuringFreeze: 1
 --- !u!114 &8456535020804610524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,12 +192,15 @@ MonoBehaviour:
   damage: 1
   targetTags:
   - Player
-  damageEnemies: 0
+  canDamageEnemies: 0
   destroyOnHit: 1
   destroyOnWall: 1
   wallLayers:
     serializedVersion: 2
     m_Bits: 64
+  applySlowToPlayer: 1
+  slowDuration: 2
+  slowMultiplier: 0.5
 --- !u!1 &6249359897418311019
 GameObject:
   m_ObjectHideFlags: 0

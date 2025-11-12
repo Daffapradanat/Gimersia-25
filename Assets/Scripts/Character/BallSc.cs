@@ -73,7 +73,7 @@ public class BallSc : MonoBehaviour
         if (collider.gameObject.CompareTag("brick"))
         {
             if (!GameManager.Instance.isPlay) return;
-            Debug.Log("kena brick");
+            //Debug.Log("kena brick");
             GameManager.Instance.SpawnVfxExplode(transform.position);
             StartCoroutine(OnTouchBrick(collider.gameObject));
         }
@@ -81,7 +81,7 @@ public class BallSc : MonoBehaviour
         if (collider.gameObject.CompareTag("Enemy"))
         {
             if (!GameManager.Instance.isPlay) return;
-            Debug.Log("kena enemy");
+            //Debug.Log("kena enemy");
             GameManager.Instance.SpawnVfxExplode(transform.position);
             StartCoroutine(OnTouchEnemy(collider.gameObject));
         }
