@@ -1,49 +1,110 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
+using DG.Tweening;
 
 public class ShieldScript : MonoBehaviour
 {
-    public int maxShield = 5, shield;
-    public float durationCooldown = 60f;
-    bool isCooldown = false;
+    [Header("Shield Settings")]
+    public int shield = 3;
+    public int maxShield = 3;
+    
+    [Header("Visual Effects")]
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private Color hitColor = Color.red;
+    [SerializeField] private float hitDuration = 0.2f;
+    [SerializeField] private float shakeStrength = 0.3f;
+    [SerializeField] private int shakeVibrato = 10;
+    [SerializeField] private float durationCooldownSpawnAgain = 25f;
+    
+    [Header("Shield Destruction")]
+    [SerializeField] private GameObject shieldBreakVFX;
+    
+    private Color originalColor;
+    private Vector3 originalPosition;
+    private bool isHitting = false;
 
-    SpriteRenderer spriteRenderer;
     BoxCollider2D boxCollider2D;
+    
+
     void Start()
     {
-        shield = maxShield;
-        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         boxCollider2D = gameObject.GetComponent<BoxCollider2D>();
+        if (spriteRenderer == null)
+            spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        
+        originalColor = spriteRenderer.color;
+        originalPosition = transform.position;
+        shield = maxShield;
     }
 
     void Update()
     {
-        if (shield <= 0 && !isCooldown)
+        if (shield <= 0)
         {
-            StartCoroutine(Coolodown());
+            DestroyShield();
         }
     }
 
-    public IEnumerator GetHitEffect()
+    public void TakeHit()
     {
-
-        spriteRenderer.color = new Color32(248, 92, 92, 255);
-        yield return new WaitForSecondsRealtime(0.2f);
-        spriteRenderer.color = new Color32(255, 255, 255, 255);
+        if (isHitting) return;
+        
+        shield--;
+        StartCoroutine(HitEffect());
+        
+        UpdateShieldAlpha();
     }
 
-    IEnumerator Coolodown()
+    IEnumerator HitEffect()
     {
-        isCooldown = true;
-        boxCollider2D.enabled = false;
-        spriteRenderer.color = new Color32(255, 255, 255, 0);
+        isHitting = true;
+        
+        // Shake effect
+        transform.DOShakePosition(hitDuration, shakeStrength, shakeVibrato, 90, false)
+            .OnComplete(() => transform.position = originalPosition);
+        
+        spriteRenderer.color = hitColor;
+        yield return new WaitForSeconds(hitDuration);
+        spriteRenderer.color = originalColor;
 
-        yield return new WaitForSeconds(durationCooldown);
+        UpdateShieldAlpha();
+        isHitting = false;
+    }
 
+    void UpdateShieldAlpha()
+    {
+        float alpha = Mathf.Lerp(0.3f, 1f, (float)shield / maxShield);
+        Color newColor = originalColor;
+        newColor.a = alpha;
+        spriteRenderer.color = newColor;
+        originalColor = newColor;
+    }
+
+    void DestroyShield()
+    {
+        if (shieldBreakVFX != null)
+        {
+            GameObject vfx = Instantiate(shieldBreakVFX, transform.position, Quaternion.identity);
+            Destroy(vfx, 0.3f);
+            // GameManager.Instance.SpawnVfxShockwave(transform.position);
+        }
+
+        // spriteRenderer.color = new Color32(255, 255, 255, 0);
+        // boxCollider2D.enabled = false;
+
+        // StartCoroutine(Cooldown());
+        Destroy(gameObject);
+    }
+
+    public void RestoreShield(int amount)
+    {
+        shield = Mathf.Min(shield + amount, maxShield);
+        UpdateShieldAlpha();
+    }
+
+    public void ResetShield()
+    {
         shield = maxShield;
-        boxCollider2D.enabled = true;
-        spriteRenderer.color = new Color32(255, 255, 255, 255);
-        isCooldown = false;
+        UpdateShieldAlpha();
     }
 }

@@ -11117,6 +11117,8 @@ MonoBehaviour:
   textTypingPrePlay: {fileID: 270676157}
   textTypingCompleted: {fileID: 1170903792}
   textTimer: {fileID: 1944534305}
+  imageAvatarHud: {fileID: 0}
+  avatarCharacters: []
   comboUI: {fileID: 2079954884}
   leftUI: {fileID: 791884427}
   rightUI: {fileID: 192628053}
@@ -11125,9 +11127,11 @@ MonoBehaviour:
   pauseUI: {fileID: 1814902155}
   gameOverUI: {fileID: 219939367}
   tutorialUI: {fileID: 11607071}
+  fireAvatarCG: {fileID: 0}
   healthFill: {fileID: 744180421}
   ultimateFill: {fileID: 1933023060}
   animatorCombo: {fileID: 2079954883}
+  animatorUltimate: {fileID: 0}
   textureStageText: []
 --- !u!1001 &1370624263
 PrefabInstance:
@@ -12045,6 +12049,10 @@ MonoBehaviour:
   characterMoveSc: {fileID: 1927999696}
   hUDManager: {fileID: 1352516151}
   ballSc: {fileID: 186956251}
+  LightUltimate: {fileID: 0}
+  fireKiri: {fileID: 0}
+  fireKanan: {fileID: 0}
+  spriteRenderersShield: []
   health: 5
   score: 0
   combo: 0
@@ -12058,12 +12066,21 @@ MonoBehaviour:
   isLoose: 0
   isCanPlay: 0
   isWinning: 0
+  isCanUlt: 0
+  isCanGetHit: 1
+  isHUDUlt: 0
+  isCanRestoreUltimate: 1
   bintangSatu_Menit: 10
   bintangDua_Menit: 8
   bintangTiga_Menit: 5
   totalPlaySeconds: 0
   ultimate: 0
   audioSourceBox: {fileID: 2033585611}
+  ballFragmentPrefab: {fileID: 0}
+  fragmentCount: 8
+  fragmentForce: 200
+  fragmentLifetime: 2
+  originalBallDisableDuration: 1
 --- !u!1 &1516395204
 GameObject:
   m_ObjectHideFlags: 0
@@ -14584,6 +14601,7 @@ MonoBehaviour:
   rb: {fileID: 1927999695}
   dashDuration: 0.05
   dashCooldown: 0
+  dashAccelerationTime: 0.1
   isCanMove: 1
 --- !u!212 &1927999697
 SpriteRenderer:

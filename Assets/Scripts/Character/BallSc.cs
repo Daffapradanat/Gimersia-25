@@ -97,7 +97,7 @@ public class BallSc : MonoBehaviour
             if (!GameManager.Instance.isPlay) return;
             ShieldScript shieldScript = collider.gameObject.GetComponent<ShieldScript>();
             shieldScript.shield--;
-            StartCoroutine(shieldScript.GetHitEffect());
+            // StartCoroutine(shieldScript.GetHitEffect());
             rb.AddForce(new Vector2(0, 3f), ForceMode2D.Impulse);
         }
 
@@ -111,7 +111,7 @@ public class BallSc : MonoBehaviour
 
             Camera.main.DOShakePosition(0.2f, 0.5f, 10, 60, false);
             GameManager.Instance.health--;
-            HUDManager.Instance.UpdateBarHealth(GameManager.Instance.health / 5f);
+            HUDManager.Instance.UpdateBarHealth(GameManager.Instance.health / (float)GameManager.Instance.maxHealth);
             // rb.linearVelocity = Vector2.zero;
 
             rb.AddForce(new Vector2(0, 20f), ForceMode2D.Impulse);

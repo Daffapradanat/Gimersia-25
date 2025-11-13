@@ -27,8 +27,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] List<SpriteRenderer> spriteRenderersShield;
 
     // variabel
-    public int health = 5, score, combo, level, totalBlock, totalHealthBoss;
-    public bool isCombo = false, isPlay = false, isHaveBoss = false, isFirstPlay = true, isLoose = false, isCanPlay = false, isWinning = false, isCanUlt = false, isCanGetHit = true, isHUDUlt = false, isCanRestoreUltimate = true;
+    public int health = 5, maxHealth = 5, score, combo, level, totalBlock, totalHealthEnemy;
+    public bool isCombo = false, isPlay = false, isHaveEnemy = false, isFirstPlay = true, isLoose = false, isCanPlay = false, isWinning = false, isCanUlt = false, isCanGetHit = true, isHUDUlt = false, isCanRestoreUltimate = true;
 
     public int bintangSatu_Menit, bintangDua_Menit, bintangTiga_Menit;
 
@@ -77,6 +77,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        health = maxHealth;
         Instance = this;
         PlayerPrefs.SetInt("last_level", level);
         SaveTargetScoreToPlayerPref();
@@ -237,7 +238,7 @@ public class GameManager : MonoBehaviour
 
         if (Input.anyKeyDown && isFirstPlay)
         {
-            Debug.LogWarning("WOY");
+            Debug.Log("Starting Game");
             KeyAnyForStart();
         }
 
@@ -261,6 +262,7 @@ public class GameManager : MonoBehaviour
                 isCanUlt = false;
                 Ultimate = 0;
                 CharacterMove.Instance.SetCannotMove();
+                CharacterHit.Instance.isCanHit = false;
                 CharacterMove.Instance.rb.linearVelocity = new Vector2(0, 0);
                 StartCoroutine(UltimateActive());
             }
@@ -332,7 +334,7 @@ public class GameManager : MonoBehaviour
 
         // kebal shield, ship
         isCanGetHit = false;
-        ChangeAllColorShield(new Color32(61, 225, 227, 255), true);
+        // ChangeAllColorShield(new Color32(61, 225, 227, 255), true);
 
         // belah -> apply a short push then split into fragments
         CharacterHit.Instance.AddForceToBallCustomStrength(200f);
@@ -341,11 +343,13 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(1f);
         CharacterMove.Instance.SetCanMove();
+        CharacterHit.Instance.isCanHit = true;
 
         yield return new WaitForSecondsRealtime(4f);
         LightUltimate.SetActive(false);
         isCanGetHit = true;
-        ChangeAllColorShield(new Color32(255, 225, 255, 255), false);
+
+        // ChangeAllColorShield(new Color32(255, 225, 255, 255), false);
 
         isHUDUlt = false;
         isCanRestoreUltimate = true;
@@ -428,27 +432,23 @@ public class GameManager : MonoBehaviour
         hUDManager.textScore.text = Score.ToString();
     }
 
-    bool IsLevelCompleted()
+    private bool IsLevelCompleted()
     {
-        if (isHaveBoss)
+        if (isHaveEnemy)
         {
-
-            // berdasarkan boss
-            if (totalHealthBoss <= 0)
+            if (totalHealthEnemy <= 0)
             {
-                Debug.Log("masuk boss");
+                //Debug.Log("Enemy defeated");
                 return true;
             }
-
         }
         else
         {
-            // berdasarkan balok
             if (totalBlock <= 0)
             {
+                //Debug.Log("All blocks cleared");
                 return true;
             }
-
         }
 
         return false;
@@ -456,7 +456,7 @@ public class GameManager : MonoBehaviour
 
     void StageWasClear()
     {
-        Debug.Log("STAGE WAS CLEAR RUNN");
+        //Debug.Log("STAGE WAS CLEAR RUNN");
         PlayerPrefs.SetInt("myBintang", GetCountStar(totalPlaySeconds));
         PlayerPrefs.SetInt("last_score", Score);
 
@@ -464,7 +464,7 @@ public class GameManager : MonoBehaviour
         {
             // Show UI Scoring
             SceneManager.LoadSceneAsync("MissionComplete", LoadSceneMode.Additive);
-            Debug.LogWarning("Load scene scoring");
+            //Debug.LogWarning("Load scene scoring");
         }));
     }
 

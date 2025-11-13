@@ -1,4 +1,5 @@
 using UnityEngine;
+using DG.Tweening;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class ProjectileController : MonoBehaviour
@@ -84,12 +85,26 @@ public class ProjectileController : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, angle);
     }
-    
+
     void ReturnToPool()
     {
         if (BulletPool.Instance != null)
             BulletPool.Instance.Return(gameObject);
         else
             Destroy(gameObject);
+    }
+
+    
+        void OnTriggerEnter2D(Collider2D collider2D)
+    {
+        if (collider2D.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("Player Getting hit");
+            GameManager.Instance.health--;
+            PPScript.Instance.HitEffect();
+            Camera.main.DOShakePosition(0.2f, 0.5f, 10, 60, false);
+            HUDManager.Instance.UpdateBarHealth(GameManager.Instance.health / (float)GameManager.Instance.maxHealth);
+        }
+
     }
 }

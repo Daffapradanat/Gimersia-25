@@ -4,7 +4,7 @@ using DG.Tweening;
 public class CharacterHit : MonoBehaviour
 {
     [SerializeField] DetectorBall detectorBallSc;
-    bool isCanHit = true, isHitAttack = false;
+    public bool isCanHit = true, isHitAttack = false;
     float durationHitCooldown = 1f;
     public float strengthHit = 15f;
 
@@ -62,7 +62,7 @@ public class CharacterHit : MonoBehaviour
 
         Time.timeScale = 1f;
         // Sebelum freeze, lakukan hit
-        Debug.Log("Hitting toll 2");
+        //Debug.Log("Hitting toll 2");
         detectorBallSc.rbBall.AddForce(new Vector2(CharacterMove.Instance.movement.x * 15f, strengthHit), ForceMode2D.Impulse);
         Camera.main.DOShakePosition(0.2f, 0.3f, 10, 60, true);
 
@@ -83,7 +83,7 @@ public class CharacterHit : MonoBehaviour
 
         Time.timeScale = 1f;
         // Sebelum freeze, lakukan hit
-        Debug.Log("Hitting toll 2");
+        //Debug.Log("Hitting toll 2");
         detectorBallSc.rbBall.AddForce(new Vector2(CharacterMove.Instance.movement.x * 15f, strengthHitCustom), ForceMode2D.Impulse);
         Camera.main.DOShakePosition(0.2f, 0.3f, 10, 60, true);
 

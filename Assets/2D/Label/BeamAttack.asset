@@ -17,3 +17,9 @@ MonoBehaviour:
   beamPillarPrefab: {fileID: 2924430295178421321, guid: 6ff0199ad88f1ee4391d938da5ebdeb9, type: 3}
   beamDuration: 2
   cleanupDelay: 1
+  beamChargeSound: {fileID: 8300000, guid: 4d52b228a9365a74ea83b06c0db9d4ed, type: 3}
+  beamActiveSound: {fileID: 8300000, guid: aa2f0edcd562fda419df35e458f5cc30, type: 3}
+  beamEndSound: {fileID: 8300000, guid: f9023fefd0f09824c9b7cbb2b65637e4, type: 3}
+  chargeSoundVolume: 0.7
+  activeSoundVolume: 0.5
+  endSoundVolume: 0.6
